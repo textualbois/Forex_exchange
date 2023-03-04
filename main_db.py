@@ -135,18 +135,18 @@ def store_pending_exchange(db_file, bid_id_askers, asker_id, bidder_id, bid_id_b
 def move_bid_to_cancelled(bid_id, user_id, db_file):
     clear_row(bid_id, "BID_ID", db_file, "ACTIVE_BIDS")
     insert_to_cancelled(user_id, bid_id, db_file)
-    update_db_value(db_file, "BID_SUMMARY", "BID_ID", bid_id, "BID_STATUS", "CANCELLED")
+    update_db_value(db_file, "BIDS_SUMMARY", "BID_ID", bid_id, "BID_STATUS", "CANCELLED")
     time_now = project_time_functions.get_current_time()
-    update_db_value(db_file, "BID_SUMMARY", "BID_ID", bid_id, "STATUS_CHANGE_ON", time_now)
-    increment_by_value(db_file, "USER_ID", user_id, "ACTIVE_BIDS_COUNT", -1)
-    increment_by_value(db_file, "USER_ID", user_id, "CANCELLED_BIDS_COUNT", 1)
+    update_db_value(db_file, "BIDS_SUMMARY", "BID_ID", bid_id, "STATUS_CHANGE_ON", time_now)
+    increment_by_value(db_file, "USER_DATA", user_id, "ACTIVE_BIDS_COUNT", -1)
+    increment_by_value(db_file, "USER_DATA", user_id, "CANCELLED_BIDS_COUNT", 1)
 
 
 def clear_row(bid_id, condition_column, db_file, table):
     conn = create_connection(db_file)
     cur = conn.cursor()
     params = (bid_id, )
-    query = (f"DELETE FROM {table}"
+    query = (f"DELETE FROM {table} "
              f"WHERE {condition_column} = ?")
     cur.execute(query, params)
     conn.commit()
@@ -180,13 +180,13 @@ def get_val_db(db_file, table, condition_column, condition_key, column):
     conn.close()
     print(f"for row where {condition_column} = {condition_key}, data for {column} is {result}")
     if result is not None:
-        return result
+        return result[0]
     else:
         return None
 
 
 def get_val_db_order_by(db_file, table, condition_column, condition_key, column, order_by):
-    print("GET_VAL_normal")
+    print(f"GET_VAL order by = {order_by}")
     conn = create_connection(db_file)
     cur = conn.cursor()
     params = (condition_key,)
@@ -270,6 +270,9 @@ def get_bids_for_message_cancelled_or_fulfilled(db_file, table, user_id, shown_d
     results = cur.execute(query, params).fetchall()
     col_names = [i[0] for i in cur.description]
     conn.close()
+    print("get_bids_for_message_cancelled_or_fulfilled:")
+    print("result:")
+    print([dict(zip(col_names, row)) for row in results])
     return [dict(zip(col_names, row)) for row in results]
 
 
@@ -441,18 +444,20 @@ def get_full_table(db_file, table):
 
 def bids_with_incoming_requests_full_row(user_id, db_file):
     conn = create_connection(db_file)
+    conn.row_factory = sqlite3.Row
     cur = conn.cursor()
     params = (user_id, )
     query = (f"SELECT ASKER_ID, BID_ID_ASKERS, BIDDER_ID, BID_ID_BIDDERS, ASKER_HAS_REPLIED"
              f"AGREEMENT_REACHED, CARRIED_OVER_BID, REQUEST_DATE"
              f"FROM PENDING_REQUESTS "
-             f"WHERE ASKER_ID = ?").format(table_name=table)
+             f"WHERE ASKER_ID = ?")
     results = cur.execute(query, params).fetchall()
     col_names = [i[0] for i in cur.description]
     conn.close()
     if results is not None:
-        print(dict(zip(col_names, results[0])))
-        return dict(zip(col_names, results[0]))
+        print([dict(zip(col_names, row)) for row in results])
+        return [dict(zip(col_names, row)) for row in results]
     else:
         return [0]
+
 

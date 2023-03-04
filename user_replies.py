@@ -44,7 +44,7 @@ def start(message):
     bot.send_message(message.chat.id, "Найти обмен - бот для поиска \
                                           контр-агента по обмену денег \n\
         Бот не является гарантом: безопасность вас и ваших средств лежит на вас. \n\
-        Выберите действие:... \n",
+        Выберите действие \n",
                      reply_markup=btmrkp.markup_menu_start(message.chat.id))
 
 
@@ -68,14 +68,24 @@ def reply_to_mainmenu(user_id):
 
 # 0 stores start data, sends to needed currency
 def reply_to_newbid(user_id, db_file):
+    print(f'getting status hash data {rf.read_hash(user_id, "STATUS")}')
+    Q_hi.enqueue(rf.start_user, user_id)
+    print(f'Юзеру {user_id} начал новую заявку')
+    msg = "Выберите валюту для получения:"  # "Выберите валюту для получения:"  "Какая валюта тебе нужна?"
+    bot.send_message(int(user_id), msg, reply_markup=btmrkp.markup_need_currency(user_id))
+
+"""
+def reply_to_newbid(user_id, db_file):
     print("replying to newbid query")
     contacts_is_complete_job = Q_hi.enqueue(contacts.is_complete, user_id, db_file)
     active_bid_count_job = Q_hi.enqueue(main_db.get_active_bids_count, db_file, user_id)
     Q_hi.enqueue(check_bids_and_contacts, user_id, db_file, active_bid_count_job.id,
                  depends_on=active_bid_count_job)
+"""
 
 
 # 0.1 checks for contact data
+"""
 def check_bids_and_contacts(user_id, db_file, active_bids_count_job):
     print(f"checking bid count and contact info for {user_id}")
     active_bid_count_dict = job.Job.fetch(active_bids_count_job).result[0]
@@ -91,7 +101,7 @@ def check_bids_and_contacts(user_id, db_file, active_bids_count_job):
         Q_hi.enqueue(start_new_bid_with_contact_check, user_id, db_file, check_contacts_job.id, depends_on=check_contacts_job)
     else:
         Q_hi.enqueue(start_new_bid, user_id, db_file)
-
+"""
 
 # 0.2 asks for contacts data or starts a new bid
 def start_new_bid_with_contact_check(user_id, db_file, check_contacts_job_id):
@@ -111,13 +121,14 @@ def start_new_bid_with_contact_check(user_id, db_file, check_contacts_job_id):
 
 
 # 0.3
+"""
 def start_new_bid(user_id, db_file):
     print(f'getting status hash data {rf.read_hash(user_id, "STATUS")}')
     Q_hi.enqueue(rf.start_user, user_id)
     print(f'Юзеру {user_id} начал новую заявку')
     msg = "Выберите валюту для получения:"  # "Выберите валюту для получения:"  "Какая валюта тебе нужна?"
     bot.send_message(int(user_id), msg, reply_markup=btmrkp.markup_need_currency(user_id))
-
+"""
 
 # 1 stores needed currency, asks how the user wants to receive it
 def reply_to_get(markup_result, user_id):
@@ -353,11 +364,11 @@ def show_my_cancelled_bids(user_id, db_file):
     cancelled_bids_count = rf.read_hash(user_id, "CANCELLED_BIDS_COUNT")
     shown_data_job = Q_hi.enqueue(rf.read_hash, user_id, "SHOWN_DATA")
     #wait_for_result(shown_data_job) return if works buggy
-    print(f"user {user_id}"
+    print(f"user {user_id}\n"
           f"current cancelled bids count: {cancelled_bids_count}\n"
           f"bids shown to user: {shown_data_job.result}")
     get_bids_job = Q_hi.enqueue(main_db.get_bids_for_message_cancelled_or_fulfilled,
-                                db_file, "BID_SUMMARY", int(user_id), shown_data_job.id, 3, "CANCELLED_BIDS",
+                                db_file, "BIDS_SUMMARY", int(user_id), shown_data_job.id, 3, "CANCELLED",
                                 depends_on=shown_data_job)
     msg_job = Q_hi.enqueue(mm.show_bids, get_bids_job.id, shown_data_job.id, depends_on=get_bids_job)
     wait_for_result(get_bids_job) #possibly remove later and add depends_on argument above

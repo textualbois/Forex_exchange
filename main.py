@@ -9,7 +9,7 @@ import create_db_byAI
 import main_db
 import datetime
 import pytz
-import exchange_requests
+import outgoing_exchange_requests
 import matching_bids
 import project_time_functions as ptf
 import redis_db as rf
@@ -73,8 +73,10 @@ def callback_query(call):
     markup_identity = call.data.split("_")[0]
     markup_result = call.data.split("_")[1]
     user_id = call.message.chat.id
+    message_id = call.message.id
     markup_result2 = call.data.split("__")[1]
     print(user_id)
+    clear_inline_keyboard(user_id, message_id)
     if markup_identity == "MAINMENU":
         ur.reply_to_mainmenu(user_id)
     elif markup_identity == "NEWBID":  # 0
@@ -123,18 +125,18 @@ def callback_query(call):
         matching_bids.show_matches(user_id, forex_db)
 
     elif markup_identity == "SENDEXCHANGEREQUEST":
-        exchange_requests.send_exchange_request(markup_result, user_id, forex_db)
+        outgoing_exchange_requests.send_exchange_request(markup_result, user_id, forex_db)
     elif markup_identity == "REPLYTOREQUEST":
-        exchange_requests.manage_askers_reply(markup_result, markup_result2, user_id, forex_db)
+        outgoing_exchange_requests.manage_askers_reply(markup_result, markup_result2, user_id, forex_db)
    # elif markup_identity == "MAKINGOFFER":
-   #     exchange_requests.send_request(markup_result, user_id, forex_db)
+   #     outgoing_exchange_requests.send_request(markup_result, user_id, forex_db)
 
     #elif markup_identity == "OTHERSBIDS":
     #    ur.reply_to_otherbids(markup_result, user_id, forex_db)
     #elif markup_identity == "FEEDBACK":
     #    ur.reply_to_feedback(markup_result, user_id)
     elif markup_identity == "CONTACTSMENU":
-        bot.send_message(user_id, "Меню контактов", btmrkp.markup_my_contacts(user_id))
+        bot.send_message(int(user_id), "Меню контактов", btmrkp.markup_my_contacts(user_id))
     elif markup_identity == "VIEWCONTACTS":
         contacts.view_my_contacts(user_id, forex_db)
     elif markup_identity == "ADDCONTACTS":
@@ -173,5 +175,8 @@ def reply_to_user(message):
         elif status == 23:
             contacts.store_local_number_in_exchange_request(message, user_id, forex_db)
 
+
+def clear_inline_keyboard(user_id, msg_id):
+    bot.edit_message_reply_markup(chat_id=int(user_id),message_id=int(msg_id), reply_markup=None)
 
 bot.polling()

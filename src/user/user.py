@@ -1,3 +1,1 @@
-anus(abc) {
-	dknjfkdnjskfnds
-}
+
