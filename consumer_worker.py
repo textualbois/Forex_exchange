@@ -4,7 +4,6 @@ import redis
 from rq import Queue, Worker
 from dotenv import dotenv_values
 import sqlite3
-import create_db
 import redis_db as rf
 import bot_markups as btmrkp
 import telebot

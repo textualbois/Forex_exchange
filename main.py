@@ -5,7 +5,7 @@ from dotenv import dotenv_values
 import telebot
 from telebot import types
 import sqlite3
-import create_db_byAI
+import create_db
 import main_db
 import datetime
 import pytz
@@ -29,7 +29,7 @@ print(f'Redis host is {REDIS_host}\n'
       f'redis port is {REDIS_port}\n'
       f'redis db is {REDIS_DB}\n')
 
-create_db_byAI.connect_and_create(forex_db)
+create_db.connect_and_create(forex_db)
 
 bot = telebot.TeleBot(API_KEY)
 r = redis.Redis(host=REDIS_host, port=REDIS_port, db=REDIS_DB, decode_responses=True)
