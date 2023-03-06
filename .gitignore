@@ -110,3 +110,6 @@ dist
 **/.DS_Store
 .DS_Store
 test/.DS_Store
+
+#FOREX.db
+**/FOREX.db
