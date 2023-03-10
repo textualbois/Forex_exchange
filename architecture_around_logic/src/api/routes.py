@@ -1,7 +1,13 @@
-def route_callback(parsed_input):
+from architecture_around_logic.src.bids.new_bid import controller as new_bid
+from architecture_around_logic.config.user_states import *
+from state_machine import get_state
+
+
+def route_callback(route, user_input, secondary_input, user_id, message_id):
 	if markup_identity == "MAINMENU":
 		ur.reply_to_mainmenu(user_id)
-	elif markup_identity == "NEWBID":  # 0
+	elif markup_identity == create_new_bid:  # 0
+		new_bid.handle_newbid_request(user_id)
 		ur.reply_to_newbid(user_id, forex_db)
 	elif markup_identity == "GET":  # 1
 		ur.reply_to_get(markup_result, user_id)  # goes to rec
@@ -63,3 +69,7 @@ def route_callback(parsed_input):
 		contacts.view_my_contacts(user_id, forex_db)
 	elif markup_identity == "ADDCONTACTS":
 		contacts.ask_for_contacts_in_menu(user_id)
+
+
+def route_message(route, user_input, user_id, message_id):
+	state = get_state(user_id)

@@ -62,8 +62,36 @@ how_can_you_send_currency_buttons_eng = {"RU": "From Russian account",
 
 how_can_you_send_currency_buttons = {"RU": how_can_you_send_currency_buttons_ru,
 									 "ENG": how_can_you_send_currency_buttons_eng}
+###########################
 
-###############
+how_much_you_have_ru = {"msg_start": "Введите сумму ",
+						"msg_end": " для обмена:"}
+# f'Введите 0 для пропуска шага'
+how_much_you_have_eng = {"msg_start": "Enter your amount of ",
+						 "msg_end": " for exchange:"}
+
+how_much_you_have = {"RU": how_much_you_have_ru,
+					 "ENG": how_much_you_have_eng}
+
+####
+
+how_much_you_want_ru = {"msg_start": "Введите сумму",
+						"msg_end": ", которую хотите получить:"}
+# f'Введите 0 для пропуска шага'
+how_much_you_want_eng = {"msg_start": "Enter the amount of ",
+						 "msg_end": " you want in return:"}
+
+how_much_you_want = {"RU": how_much_you_want_ru,
+					 "ENG": how_much_you_want_eng}
+
+#####
+
+enter_valid_value_ru = {"msg_start": "Введите целое число, например 123456"}
+enter_valid_value_eng = {"msg_start": "Enter a whole value, i.e. 123456"}
+
+enter_valid_value = {"RU": enter_valid_value_ru, "ENG": enter_valid_value_eng}
+
+###########################
 
 check_input_ru = {"msg_start": ""}
 check_input_eng = {"msg_start": ""}
@@ -96,7 +124,7 @@ what_is_your_location_eng = {"msg_start": ("Lets add the location, where you wou
 										  "The bot takes coordinates, i.e.:\n"
 										  "28.399471, -14.155266\n"
 										  "These coordinates represent the Canary islands\n\n"
-										  "1) In any maps app pick a point, "
+										  "1) In any map app pick a point, "
 										  "it's description should have a similar combination of numbers.\n"
 										  "2) Copy the values and paste them below.\n\n"
 										  "If you're having difficulties send any message.")}

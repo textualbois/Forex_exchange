@@ -8,4 +8,7 @@ user_checked_newbid_input = "CHECK"
 
 
 go_to_mybids_menu = "MYBIDS"
+
+
+user_state = "STATUS"
 user_entered_what_bids_to_show
