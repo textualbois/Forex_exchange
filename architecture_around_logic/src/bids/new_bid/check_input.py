@@ -1,5 +1,7 @@
 import re
 
+# todo maybe use global functions from src/helpers.py
+
 def amount_is_valid(value):
 	if "".join(value.split()).isdigit():
 		return True

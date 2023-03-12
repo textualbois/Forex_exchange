@@ -177,6 +177,6 @@ def reply_to_user(message):
 
 
 def clear_inline_keyboard(user_id, msg_id):
-    bot.edit_message_reply_markup(chat_id=int(user_id),message_id=int(msg_id), reply_markup=None)
+    bot.edit_message_reply_markup(chat_id=int(user_id), message_id=int(msg_id), reply_markup=None)
 
 bot.polling()

@@ -43,16 +43,11 @@ def what_currency_has_user_got(lang):
     return markup
 
 
-def check_input():
+def check_input(lang):
     markup = InlineKeyboardMarkup()
     markup.width = 1
-    markup.add(
-        InlineKeyboardButton("Все верно", callback_data=f"CHECK_OK__")
-    )
-    markup.add(
-        InlineKeyboardButton("Я неверно ввел", callback_data="CHECK_USERBAD__")
-    )
-    markup.add(
-        InlineKeyboardButton("Бот неверно записал", callback_data="CHECK_BOTBAD__")
-    )
+    for key, value in s.check_input(lang).items():
+        markup.add(
+            InlineKeyboardButton(value, callback_data=f"{us.user_checked_newbid_input}_{key}__")
+        )
     return markup

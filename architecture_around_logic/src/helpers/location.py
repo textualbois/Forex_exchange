@@ -9,3 +9,7 @@ def location_is_valid(location):
             return True
     else:
         return False
+
+
+def parse_coordinates(input_val):
+	return (re.sub(r"[\r\n\s\(\)]+", "", input_val)).split(",")

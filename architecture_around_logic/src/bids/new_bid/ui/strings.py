@@ -1,5 +1,9 @@
 
-
+"""
+strings for:
+controller.handle_newbid_request()
+logic.choose_wanted_currency()
+"""
 choose_wanted_currency_ru = {"msg_start": "Выберите валюту для получения:"}
 choose_wanted_currency_eng = {"msg_start": "Choose which currency you want to receive:"}
 
@@ -11,6 +15,11 @@ wanted_currency_buttons_eng = {"RUB": "Ruble/RUB", "TRL": "Lira/TRL"}
 wanted_currency_buttons = {"RU": wanted_currency_buttons_ru, "ENG": wanted_currency_buttons_eng}
 
 ############################
+"""
+strings for:
+controller.handle_required_currency()
+logic.choose_how_to_receive_currency()
+"""
 
 choose_how_to_receive_currency_ru = {"msg_start": "Как хотите получить деньги?"}
 choose_how_to_receive_currency_eng = {"msg_start": "How do you want to receive money?"}
@@ -29,6 +38,11 @@ how_to_receive_currency_buttons = {"RU": how_to_receive_currency_buttons_ru,
 								   "ENG": how_to_receive_currency_buttons_eng}
 
 #########################
+"""
+strings for:
+controller.handle_wanted_reception_method()
+logic.what_currency_user_has()
+"""
 
 what_currency_do_you_have_ru = {"msg_start": "Какая у вас валюта?"}
 what_currency_do_you_have_eng = {"msg_start": "What currency do you have?"}
@@ -46,6 +60,11 @@ available_currency_buttons = {"RU": available_currency_buttons_ru,
 
 
 ######################
+"""
+strings for:
+controller.handle_available_currency()
+logic.where_is_users_currency()
+"""
 
 how_can_you_send_money_ru = {"msg_start": "Как можете передать средства?"}
 how_can_you_send_money_eng = {"msg_start": "How can you transfer your money?"}
@@ -63,6 +82,11 @@ how_can_you_send_currency_buttons_eng = {"RU": "From Russian account",
 how_can_you_send_currency_buttons = {"RU": how_can_you_send_currency_buttons_ru,
 									 "ENG": how_can_you_send_currency_buttons_eng}
 ###########################
+"""
+strings for:
+controller.handle_users_currency_location()
+logic.how_much_user_has()
+"""
 
 how_much_you_have_ru = {"msg_start": "Введите сумму ",
 						"msg_end": " для обмена:"}
@@ -74,6 +98,11 @@ how_much_you_have = {"RU": how_much_you_have_ru,
 					 "ENG": how_much_you_have_eng}
 
 ####
+"""
+strings for:
+controller.handle_available_currency_amount()
+logic.how_much_user_wants()
+"""
 
 how_much_you_want_ru = {"msg_start": "Введите сумму",
 						"msg_end": ", которую хотите получить:"}
@@ -85,32 +114,26 @@ how_much_you_want = {"RU": how_much_you_want_ru,
 					 "ENG": how_much_you_want_eng}
 
 #####
-
+"""
+strings for:
+controller.handle_available_currency_amount()
+logic.how_much_user_has_2()
+controller.handle_required_currency_amount()
+logic.how_much_user_wants_2()
+"""
 enter_valid_value_ru = {"msg_start": "Введите целое число, например 123456"}
 enter_valid_value_eng = {"msg_start": "Enter a whole value, i.e. 123456"}
 
 enter_valid_value = {"RU": enter_valid_value_ru, "ENG": enter_valid_value_eng}
 
-###########################
-
-check_input_ru = {"msg_start": ""}
-check_input_eng = {"msg_start": ""}
-
-check_input = {"RU": check_input_ru,
-			   "ENG": check_input_eng}
-
-check_input_buttons_ru = {"OK": "Все верно",
-						  "USERBAD": "Я неверно ввел",
-						  "BOTBAD": "Бот неверно записал"}
-check_input_buttons_eng = {"OK": "Everything correct",
-						   "USERBAD": "I made a mistake",
-						   "BOTBAD": "Bot made a mistake"}
-
-check_input_buttons = {"RU": check_input_buttons_ru,
-					   "ENG": check_input_buttons_eng}
-
 
 ############################
+
+"""
+strings for:
+controller.handle_required_currency_amount()
+logic.ask_user_location()
+"""
 
 what_is_your_location_ru = {"msg_start": ("Давайте добавим местоположение, где вам будет удобно произвести обмен.\n\n"
 										  "Бот принимает координаты, например:\n"
@@ -132,10 +155,57 @@ what_is_your_location_eng = {"msg_start": ("Lets add the location, where you wou
 what_is_your_location = {"RU": what_is_your_location_ru,
 						 "ENG": what_is_your_location_eng}
 
+
 #############################
+"""
+strings for:
+controller.handle_users_location()
+logic.ask_location_alias()
+"""
+
 
 location_alias_ru = {"msg_start": "Добавьте название этой локации, например:\nСтамбул, Таксим\nили\nАнталья"}
 location_alias_eng = {"msg_start": "Add a name to this location,  i.e.:\nIstanbul, Taksim\nor\nAntalya"}
 
 location_alias = {"RU": location_alias_ru,
 				  "ENG": location_alias_eng}
+
+###########################
+"""
+strings for:
+controller.handle_location_alias()
+logic.ask_user_to_check_input()
+"""
+check_input_ru = {"your_location_is": "Вы находитесь в ",
+				  "you_have": "У вас ",
+				  "in": " в ",
+				  "you_need": "Вам нужно ",
+				  "approximate_rate": "Примерный курс ",
+				  "inverse_rate": "Обратный курс "}
+check_input_eng = {"your_location_is": "Your location is ",
+				  "you_have": "You have ",
+				  "in": " ",
+				  "you_need": "You need ",
+				  "approximate_rate": "Approximate rate ",
+				  "inverse_rate": "Inverse rate "}
+
+check_input = {"RU": check_input_ru,
+			   "ENG": check_input_eng}
+
+check_input_buttons_ru = {"OK": "Все верно",
+						  "USERBAD": "Я неверно ввел",
+						  "BOTBAD": "Бот неверно записал"}
+check_input_buttons_eng = {"OK": "Everything correct",
+						   "USERBAD": "I made a mistake",
+						   "BOTBAD": "Bot made a mistake"}
+
+check_input_buttons = {"RU": check_input_buttons_ru,
+					   "ENG": check_input_buttons_eng}
+
+
+################
+"""
+strings for:
+controller.handle_input_check()
+logic.check_result_ok()
+"""
