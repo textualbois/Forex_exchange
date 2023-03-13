@@ -5,7 +5,9 @@ from architecture_around_logic.config.user_states import *
 from architecture_around_logic.config import db_aliases as db_alias
 import re
 import redis_db as rf_glob
-
+import redis_funcs as rf_local
+import db_funcs as db_local
+from architecture_around_logic.src.main_menu import logic as main_menu
 
 
 """
@@ -16,12 +18,15 @@ def choose_wanted_currency(user_id, lang=rus):
 	bot.send_message(int(user_id), mc.choose_needed_currency(lang),
 					 reply_markup=markups.needed_currency(lang))
 
+
 def store_wanted_currency(user_id, input_val):
 	rf_glob.update_hash(user_id, db_alias.needed_currency, input_val)
+
 
 def choose_how_to_receive_currency(user_id, lang=rus):
 	bot.send_message(int(user_id), mc.choose_how_to_receive_currency(lang),
 					 reply_markup=markups.how_to_receive_currency(lang))
+
 
 def store_how_to_receive_currency(user_id, input_val):
 	rf_glob.update_hash(user_id, db_alias.user_needs_money_here, input_val)
@@ -98,21 +103,23 @@ def ask_user_to_check_input(user_id, lang=rus):
 
 
 def check_result_ok(user_id, lang=rus):
-	bot.send_message(user_id, mc.saving_data(lang))
-	main_menu.go_to_main_menu(user_id)
+	bot.send_message(user_id, mc.saving_bid(lang))
+	main_menu.show_menu(user_id)
 
 
 def transfer_to_main_db(user_id):
 	newbid_data = rf_local.get_newbid_data(user_id)
-	db.store_newbid(user_id, newbid_data)
-
-def check_result_userbad(user_id):
-	# todo msg = "Попробуем ещё раз.\n Какую валюту хотите получить:"
-	pass
+	db_local.store_newbid(user_id, newbid_data)
 
 
-def check_result_botbad(user_id):
+def check_result_userbad(user_id, lang=rus):
+	bot.send_message(user_id, mc.retry_newbid(lang))
+	choose_wanted_currency(user_id, lang)
+
+
+def check_result_botbad(user_id, lang=rus):
+	bot.send_message(user_id, mc.ask_feedback(lang))
 	#  todo feedback option
-	pass
+
 
 

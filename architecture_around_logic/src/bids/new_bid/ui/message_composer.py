@@ -83,3 +83,24 @@ def check_input(lang, bid_data):
 		   f"{HAS_CUR + '/' + NEED_CUR if NEED_VAL < NEED_VAL else NEED_CUR + '/' + HAS_CUR}:\n"
 		   f"{min(HAS_VAL / NEED_VAL, NEED_VAL / HAS_VAL):.4}\n")
 	return msg
+
+
+# todo saving_bid
+def saving_bid(lang):
+	msg_dict = s.saving_bid(lang)
+	msg = msg_dict['msg_start']
+	return msg
+
+
+# todo msg = "Попробуем ещё раз.\n Какую валюту хотите получить:"
+def retry_newbid(lang):
+	msg_dict = s.retry_newbid(lang)
+	msg = msg_dict['msg_start']
+	return msg
+
+
+# todo ask feedback
+def ask_feedback(lang):
+	msg_dict = s.ask_feedback(lang)
+	msg = msg_dict['msg_start']
+	return msg

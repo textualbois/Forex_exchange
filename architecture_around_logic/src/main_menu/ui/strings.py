@@ -1,5 +1,6 @@
 from architecture_around_logic.config.user_states import create_new_bid, \
-	go_to_mybids_menu, go_to_others_bids, go_to_contacts_menu, go_to_incoming_bids, feedback_menu
+	go_to_mybids_menu, go_to_others_bids, go_to_contacts_menu,\
+	go_to_incoming_bids, feedback_menu
 from architecture_around_logic.config.language_alias import *
 
 main_menu_buttons_ru = {create_new_bid: "Оставить заявку",

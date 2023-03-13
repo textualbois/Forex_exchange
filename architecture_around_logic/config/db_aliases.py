@@ -20,3 +20,11 @@ only main_db column namess
 only redis_db column names
 """
 user_state = "STATUS"
+
+"""
+variable names in main_db
+"""
+bid_is_active = "active"
+bid_is_cancelled = "cancelled"
+bid_is_fulfilled = "fulfilled"
+

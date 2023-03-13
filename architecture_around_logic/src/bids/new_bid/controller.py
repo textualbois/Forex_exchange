@@ -65,12 +65,13 @@ def handle_location_alias(user_id, input_val):
 
 
 def handle_input_check(user_id, input_val):
+	sm.clear_state(user_id)
 	if input_val == "OK":
 		check_result_ok(user_id)
 		transfer_to_main_db(user_id)
-		sm.clear_state(user_id)
 	elif input_val == "USERBAD":
 		check_result_userbad(user_id)
 		choose_wanted_currency(user_id)
 	elif input_val == "BOTBAD":
 		check_result_botbad(user_id)
+
