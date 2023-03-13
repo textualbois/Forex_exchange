@@ -1,12 +1,12 @@
 from architecture_around_logic.src.bids.new_bid import controller as new_bid
+from architecture_around_logic.src.main_menu import logic as main_menu
 from architecture_around_logic.config.user_states import *
 from state_machine import get_state
 
 
 def route_callback(route, user_input, secondary_input, user_id, message_id):
 	if route == go_to_main_menu:
-		ur.reply_to_mainmenu(user_id)
-
+		main_menu.show_menu(user_id)
 	elif route == create_new_bid:  # 0
 		new_bid.handle_newbid_request(user_id)
 	elif route == user_entered_what_currency_he_wants:  # 1

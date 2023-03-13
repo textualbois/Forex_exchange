@@ -15,5 +15,12 @@ user_making_newbid = 10
 
 go_to_mybids_menu = "MYBIDS"
 
+go_to_incoming_bids = "INCOMINGBIDS"
+
+go_to_others_bids = "OTHERBIDS"
+
+go_to_contacts_menu = "CONTACTSMENU"
+
+feedback_menu = "FEEDBACK"
 
 user_state = "STATUS"

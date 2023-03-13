@@ -1,5 +1,4 @@
 def format_currency_location(location, lang):
-
     if location == "NAL":
         return in_cash[lang]
     elif location == "RU":
