@@ -1,5 +1,6 @@
 from architecture_around_logic.src.bids.new_bid import controller as new_bid
 from architecture_around_logic.src.main_menu import logic as main_menu
+from architecture_around_logic.src.contacts.contacts_menu import logic as contacts_menu
 from architecture_around_logic.config.user_states import *
 from state_machine import get_state
 
@@ -64,8 +65,8 @@ def route_callback(route, user_input, secondary_input, user_id, message_id):
 	#    ur.reply_to_otherbids(user_input, user_id, forex_db)
 	# elif route == "FEEDBACK":
 	#    ur.reply_to_feedback(user_input, user_id)
-	elif route == "CONTACTSMENU":
-		bot.send_message(int(user_id), "Меню контактов", btmrkp.markup_my_contacts(user_id))
+	elif route == go_to_contacts_menu:
+		contacts_menu.show_menu(user_id)
 	elif route == "VIEWCONTACTS":
 		contacts.view_my_contacts(user_id, forex_db)
 	elif route == "ADDCONTACTS":

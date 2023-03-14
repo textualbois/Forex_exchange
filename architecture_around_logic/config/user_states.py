@@ -20,6 +20,8 @@ go_to_incoming_bids = "INCOMINGBIDS"
 go_to_others_bids = "OTHERBIDS"
 
 go_to_contacts_menu = "CONTACTSMENU"
+view_contacts = "VIEWCONTACTS"
+add_contacts = "ADDCONTACTS"
 
 feedback_menu = "FEEDBACK"
 

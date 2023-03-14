@@ -85,12 +85,10 @@ def check_input(lang, bid_data):
 	return msg
 
 
-
 def saving_bid(lang):
 	msg_dict = s.saving_bid(lang)
 	msg = msg_dict['msg_start']
 	return msg
-
 
 
 def retry_newbid(lang):

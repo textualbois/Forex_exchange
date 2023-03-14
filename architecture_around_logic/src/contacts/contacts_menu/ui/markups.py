@@ -5,7 +5,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 def show_menu(lang):
 	markup = InlineKeyboardMarkup()
 	markup.width = 1
-	for key, value in s.main_menu_buttons(lang).items():
+	for key, value in s.contacts_menu_buttons(lang).items():
 		markup.add(
 			InlineKeyboardButton(value, callback_data=f"{key}__")
 		)
