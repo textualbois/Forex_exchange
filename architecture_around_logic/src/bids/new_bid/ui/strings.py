@@ -209,3 +209,26 @@ strings for:
 controller.handle_input_check()
 logic.check_result_ok()
 """
+saving_bid_ru = {"msg_start": ('Фиксируем заявку.\n'
+							   'В разделе "Мои заявки" сможете ее посмотреть и подобрать подходящие.\n'
+							   'Не забудьте добавить свои контакты, чтобы другие пользователи видели вашу заявку.\n'
+							   'Мы не передаем ваши контакты другому пользователю, предварительно не спросив вас '
+							   'и не уточнив актуальность конкретной вашей заявки.')}
+saving_bid_eng = {"msg_start": ('Saving your bid.\n'
+							   'Under "My bids" you can view it and find matching bids of other users.\n'
+							   'Do not forget to add your contacts so that other users can see your bid as active.\n'
+							   'We do not share your data with other users without asking you beforehand '
+							   'and making sure that your bid offer is still relevant.')}
+saving_bid = {"RU": saving_bid_ru, "ENG": saving_bid_eng}
+
+"""
+strings for:
+controller.handle_input_check()
+logic.check_result_ok()
+"""
+
+retry_newbid_ru = {"msg_Start": "Давайте попробуем снова записать заявку"}
+
+retry_newbid_eng = {"msg_start": "Let's try again"}
+
+retry_newbid = {"RU": retry_newbid_ru, "ENG": retry_newbid_eng}

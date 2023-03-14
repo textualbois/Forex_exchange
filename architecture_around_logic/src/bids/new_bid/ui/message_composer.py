@@ -85,14 +85,14 @@ def check_input(lang, bid_data):
 	return msg
 
 
-# todo saving_bid
+
 def saving_bid(lang):
 	msg_dict = s.saving_bid(lang)
 	msg = msg_dict['msg_start']
 	return msg
 
 
-# todo msg = "Попробуем ещё раз.\n Какую валюту хотите получить:"
+
 def retry_newbid(lang):
 	msg_dict = s.retry_newbid(lang)
 	msg = msg_dict['msg_start']
