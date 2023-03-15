@@ -21,7 +21,19 @@ go_to_others_bids = "OTHERBIDS"
 
 go_to_contacts_menu = "CONTACTSMENU"
 view_contacts = "VIEWCONTACTS"
-add_contacts = "ADDCONTACTS"
+user_wants_to_add_contacts = "ADDCONTACTS"
+
+#user_wants_to_add_contacts = 11
+next_step_ask_whatsapp = 11
+user_entered_whatsapp = 12
+next_step_ask_telegram = 12
+user_entered_telegram = 13
+next_step_ask_viber = 13
+user_entered_viber = 14
+next_step_ask_local_number = 14
+user_entered_local_number = 15
+next_step_verify_entered_contacts = 15
+user_adding_contacts_group = 17
 
 feedback_menu = "FEEDBACK"
 

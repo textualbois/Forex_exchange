@@ -3,6 +3,7 @@ from architecture_around_logic.src.main_menu import logic as main_menu
 from architecture_around_logic.src.contacts.contacts_menu import logic as contacts_menu
 from architecture_around_logic.config.user_states import *
 from state_machine import get_state
+from architecture_around_logic.src.contacts.add_contacts import controller as add_contacts_group
 
 
 def route_callback(route, user_input, secondary_input, user_id, message_id):
@@ -69,8 +70,8 @@ def route_callback(route, user_input, secondary_input, user_id, message_id):
 		contacts_menu.show_menu(user_id)
 	elif route == "VIEWCONTACTS":
 		contacts.view_my_contacts(user_id, forex_db)
-	elif route == "ADDCONTACTS":
-		contacts.ask_for_contacts_in_menu(user_id)
+	elif route == add_contacts:
+		add_contacts.handle_add_contacts(user_id)
 
 
 def route_message(route, user_input, user_id, message_id):
@@ -78,25 +79,21 @@ def route_message(route, user_input, user_id, message_id):
 	if state < user_making_newbid:
 		if state == user_entered_available_amount:  # 5
 			new_bid.handle_available_currency_amount(user_id, user_input)
-			ur.reply_to_has_val(message, user_id)  # goes to state check (need_val)
 		elif state == user_entered_required_amount:  # 6
 			new_bid.handle_required_currency_amount(user_id, user_input)
-			ur.reply_to_need_val(message, user_id)  # goes to state check (main loc coordinates)
 		elif state == user_entered_location_coordinates:  # 7:
 			new_bid.handle_users_location(user_id, user_input)
-			ur.reply_to_main_loc_coordinates(message, user_id)  # goes to state check (main loc alias)
 		elif state == user_entered_location_alias:  # 8:
 			new_bid.handle_location_alias(user_id, user_input)
-			ur.reply_to_main_loc_alias(message, user_id)
-	elif state < 20:
-		if state == 10:
-			contacts.store_whatsapp_number(message, user_id, forex_db)
-		elif state == 11:
-			contacts.store_telegram_number(message, user_id, forex_db)
-		elif state == 12:
-			contacts.store_viber_number(message, user_id, forex_db)
-		elif state == 13:
-			contacts.store_local_number_from_menu(message, user_id, forex_db)
+	elif state < user_adding_contacts_group:
+		if state == user_entered_whatsapp:
+			add_contacts_group.handle_whatsapp_number(user_id, user_input)
+		elif state == user_entered_telegram:
+			add_contacts_group.handle_telegram_number(user_id, user_input)
+		elif state == user_entered_viber:
+			add_contacts_group.handle_viber_number(user_id, user_input)
+		elif state == user_entered_local_number:
+			add_contacts_group.handle_local_number(user_id, user_input)
 	elif state < 30:
 		if state == 20:
 			contacts.store_whatsapp_number(message, user_id, forex_db)

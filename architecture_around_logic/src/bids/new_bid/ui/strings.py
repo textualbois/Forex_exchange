@@ -218,7 +218,7 @@ saving_bid_eng = {"msg_start": ('Saving your bid.\n'
 							   'Under "My bids" you can view it and find matching bids of other users.\n'
 							   'Do not forget to add your contacts so that other users can see your bid as active.\n'
 							   'We do not share your data with other users without asking you beforehand '
-							   'and making sure that your bid offer is still relevant.')}
+							   'and making sure that your bid is still relevant.')}
 saving_bid = {"RU": saving_bid_ru, "ENG": saving_bid_eng}
 
 """
