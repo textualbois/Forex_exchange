@@ -21,6 +21,8 @@ col_main_location_alias = "MAIN_LOC_ALIAS"
 """
 only main_db column names
 """
+col_user_id = "USER_ID"
+
 col_whatsapp_number = "WHATSAPP_NUMBER"
 col_telegram_number = "TELEGRAM_NUMBER"
 col_viber_number = "VIBER_NUMBER"

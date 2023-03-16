@@ -6,7 +6,7 @@ from architecture_around_logic.src.main_db.connection import create_connection
 def store_newbid(USER_ID,
                    NEED_VAL, HAS_VAL, NEED_CUR, HAS_CUR, NEED_LOC, HAS_LOC,
                    LOC_MAIN_ALIAS, LOC_MAIN_LAT, LOC_MAIN_LON, CREATED_ON):
-    conn = create_connection(db_file)
+    conn = create_connection()
     cur = conn.cursor()
     params = (USER_ID,
               NEED_VAL, HAS_VAL, NEED_CUR, HAS_CUR, NEED_LOC, HAS_LOC,
