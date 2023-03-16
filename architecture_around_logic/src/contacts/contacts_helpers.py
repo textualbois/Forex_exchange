@@ -4,8 +4,8 @@ import re
 #  check that there is a leading "+" before cleaning input
 
 
-def check_input_good(input):
-	return re.match(r'\+\d{7,15}', input)
+def check_input_good(input_val):
+	return re.match(r'\+\d{7,15}', input_val)
 
 
 def format_number(number):

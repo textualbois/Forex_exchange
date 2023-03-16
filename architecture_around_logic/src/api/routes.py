@@ -1,9 +1,9 @@
-from architecture_around_logic.src.bids.new_bid import controller as new_bid
-from architecture_around_logic.src.main_menu import logic as main_menu
-from architecture_around_logic.src.contacts.contacts_menu import logic as contacts_menu
-from architecture_around_logic.config.user_states import *
-from state_machine import get_state
-from architecture_around_logic.src.contacts.add_contacts import controller as add_contacts_group
+from ..bids.new_bid import controller as new_bid
+from ..main_menu import logic as main_menu
+from ..contacts.contacts_menu import logic as contacts_menu
+from ...config.user_states import *
+from .state_machine import get_state
+from ..contacts.add_contacts import controller as add_contacts_group
 
 
 def route_callback(route, user_input, secondary_input, user_id, message_id):
